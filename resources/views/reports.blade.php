@@ -46,30 +46,32 @@
         </div>
         <div class="block-content">
             @isset($students)
-            <table class="table table-bordered table-vcenter">
-                <thead>
-                    <tr>
-                        <th class="text-center">No.</th>
-                        <th class="text-center">Registration Number</th>
-                        <th class="text-center">Math</th>
-                        <th class="text-center">Physics</th>
-                        <th class="text-center">Chemistry</th>
-                        <th class="text-center">Total Score</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach($students as $index => $student)
-                    <tr>
-                        <td class="text-center">{{ $index + 1 }}</td>
-                        <td class="text-center">{{ $student->sbd }}</td>
-                        <td class="text-center">{{ $student->toan }}</td>
-                        <td class="text-center">{{ $student->vat_li }}</td>
-                        <td class="text-center">{{ $student->hoa_hoc }}</td>
-                        <td class="text-center">{{ $student->total_score }}</td>
-                    </tr>
-                    @endforeach
-                </tbody>
-            </table>
+            <div class="table-responsive">
+                <table class="table table-bordered table-vcenter">
+                    <thead>
+                        <tr>
+                            <th class="text-center">No.</th>
+                            <th class="text-center">Registration Number</th>
+                            <th class="text-center">Math</th>
+                            <th class="text-center">Physics</th>
+                            <th class="text-center">Chemistry</th>
+                            <th class="text-center">Total Score</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($students as $index => $student)
+                        <tr>
+                            <td class="text-center">{{ $index + 1 }}</td>
+                            <td class="text-center">{{ $student->sbd }}</td>
+                            <td class="text-center">{{ $student->toan }}</td>
+                            <td class="text-center">{{ $student->vat_li }}</td>
+                            <td class="text-center">{{ $student->hoa_hoc }}</td>
+                            <td class="text-center">{{ $student->total_score }}</td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
             @else
             <div class="alert alert-primary text-center" role="alert">
                 <p class="mb-0">No data available</p>
