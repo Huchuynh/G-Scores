@@ -8,6 +8,7 @@ RUN apt-get update && apt-get install -y \
     unzip \
     curl \
     libzip-dev \
+    netcat-traditional \
     && docker-php-ext-install pdo pdo_pgsql zip \
     && docker-php-ext-enable pdo_pgsql
 
@@ -29,5 +30,8 @@ RUN chown -R www-data:www-data storage bootstrap/cache
 # Expose port
 EXPOSE 8000
 
-CMD ["php-fpm"]
+# Copy entrypoint script
+COPY entrypoint.sh /usr/local/bin/entrypoint.sh
+RUN chmod +x /usr/local/bin/entrypoint.sh
 
+CMD ["entrypoint.sh"]
