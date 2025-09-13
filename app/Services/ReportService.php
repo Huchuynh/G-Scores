@@ -39,7 +39,13 @@ class ReportService
     public function topGroupA(int $limit = 10)
     {
         return DB::table('students')
-            ->select('sbd', 'toan', 'vat_li', 'hoa_hoc', DB::raw('(toan + vat_li + hoa_hoc) as total_score'))
+            ->select(
+                'sbd',
+                'toan',
+                'vat_li',
+                'hoa_hoc',
+                DB::raw('(COALESCE(toan,0) + COALESCE(vat_li,0) + COALESCE(hoa_hoc,0)) as total_score')
+            )
             ->orderByDesc('total_score')
             ->limit($limit)
             ->get();

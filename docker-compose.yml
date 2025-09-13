@@ -8,8 +8,8 @@ services:
         working_dir: /var/www
         volumes:
             - ./:/var/www # Mount toàn bộ code
-            - ./vendor:/var/www/vendor # Đảm bảo vendor lưu ngoài
-            - ./storage:/var/www/storage # Storage để ngoài cho permission
+            - ./vendor:/var/www/vendor
+            - ./storage:/var/www/storage
         networks:
             - laravel
 
@@ -25,32 +25,18 @@ services:
         networks:
             - laravel
 
-    db:
-        image: mysql:8.0
-        container_name: laravel_db
+    postgres:
+        image: postgres:15
+        container_name: laravel_postgres
         restart: unless-stopped
         environment:
-            MYSQL_ROOT_PASSWORD: root
-            MYSQL_DATABASE: laravel
-            MYSQL_USER: laravel
-            MYSQL_PASSWORD: secret
-        ports:
-            - "3307:3306"
+            POSTGRES_DB: laravel_db
+            POSTGRES_USER: laravel
+            POSTGRES_PASSWORD: laravel
         volumes:
-            - db_data:/var/lib/mysql
-        networks:
-            - laravel
-
-    phpmyadmin:
-        image: phpmyadmin/phpmyadmin:latest
-        container_name: laravel_phpmyadmin
-        restart: always
+            - pgdata:/var/lib/postgresql/data
         ports:
-            - "8080:80"
-        environment:
-            PMA_HOST: db
-            PMA_PORT: 3306
-            MYSQL_ROOT_PASSWORD: root
+            - "5432:5432"
         networks:
             - laravel
 
@@ -58,4 +44,4 @@ networks:
     laravel:
 
 volumes:
-    db_data:
+    pgdata:
