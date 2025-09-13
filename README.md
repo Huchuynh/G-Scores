@@ -39,23 +39,28 @@ git clone https://github.com/Huchuynh/G-Scores.git
 cd G-Scores
 ```
 
-2. Copy the example environment file:
+2. Install Composer
+```bash
+composer install --no-dev --optimize-autoloader
+```
+
+3. Copy the example environment file:
 
 ```bash
 cp .env.example .env
 ```
 
-3. Build and start Docker containers:
+4. Build and start Docker containers:
 
 ```bash
 docker-compose up -d --build
 ```
 
-4. Create a database and run migrations with seed data (StudentsSeeder):
+5. Create a database and run migrations with seed data (StudentsSeeder):
 
 ```bash
 docker-compose exec app php artisan migrate --force
 docker-compose exec app php artisan db:seed --class=StudentsSeeder --force
 ```
 
-5. Access the application in your web browser at `http://localhost:8000`.
+5. Access the application in your web browser at `http://localhost:10000`.
