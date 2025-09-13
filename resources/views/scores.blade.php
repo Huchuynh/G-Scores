@@ -61,34 +61,36 @@
                 </div>
             </div>
 
-            <table class="table table-bordered table-vcenter">
-                <thead>
-                    <tr>
-                        <th class="text-center">Math</th>
-                        <th class="text-center">Literature</th>
-                        <th class="text-center">Foreign Language</th>
-                        <th class="text-center">Physics</th>
-                        <th class="text-center">Chemistry</th>
-                        <th class="text-center">Biology</th>
-                        <th class="text-center">History</th>
-                        <th class="text-center">Geography</th>
-                        <th class="text-center">Civic Education</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td class="text-center">{{ $student->toan }}</td>
-                        <td class="text-center">{{ $student->ngu_van }}</td>
-                        <td class="text-center">{{ $student->ngoai_ngu }}</td>
-                        <td class="text-center">{{ $student->vat_li }}</td>
-                        <td class="text-center">{{ $student->hoa_hoc }}</td>
-                        <td class="text-center">{{ $student->sinh_hoc }}</td>
-                        <td class="text-center">{{ $student->lich_su }}</td>
-                        <td class="text-center">{{ $student->dia_li }}</td>
-                        <td class="text-center">{{ $student->gdcd }}</td>
-                    </tr>
-                </tbody>
-            </table>
+            <div class="table-responsive">
+                <table class="table table-bordered table-vcenter">
+                    <thead>
+                        <tr>
+                            <th class="text-center">Math</th>
+                            <th class="text-center">Literature</th>
+                            <th class="text-center">Foreign Language</th>
+                            <th class="text-center">Physics</th>
+                            <th class="text-center">Chemistry</th>
+                            <th class="text-center">Biology</th>
+                            <th class="text-center">History</th>
+                            <th class="text-center">Geography</th>
+                            <th class="text-center">Civic Education</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="text-center">{{ $student->toan }}</td>
+                            <td class="text-center">{{ $student->ngu_van }}</td>
+                            <td class="text-center">{{ $student->ngoai_ngu }}</td>
+                            <td class="text-center">{{ $student->vat_li }}</td>
+                            <td class="text-center">{{ $student->hoa_hoc }}</td>
+                            <td class="text-center">{{ $student->sinh_hoc }}</td>
+                            <td class="text-center">{{ $student->lich_su }}</td>
+                            <td class="text-center">{{ $student->dia_li }}</td>
+                            <td class="text-center">{{ $student->gdcd }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
             @else
             <div class="alert alert-primary text-center" role="alert">
                 <p class="mb-0">Please enter your registration number to view scores.</p>
