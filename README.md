@@ -26,8 +26,8 @@ You can access the live demo of G-Scores at: [https://g-scores-hd67.onrender.com
 Before running the application, make sure your system has:
 
 -   Docker & Docker Compose
--   PHP >= 8.1 (if running locally without Docker)
--   Composer (if running locally without Docker)
+-   PHP >= 8.1
+-   Composer
 -   PostgreSQL
 
 ## 📥 Installation and Running Locally
