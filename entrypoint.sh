@@ -15,4 +15,4 @@ php artisan migrate --force
 php artisan db:seed --class=StudentsSeeder --force
 
 # Start Laravel server
-php artisan serve --host=0.0.0.0 --port=8000
+php artisan serve --host=0.0.0.0 --port=${PORT:-10000}
