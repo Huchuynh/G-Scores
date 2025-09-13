@@ -10,9 +10,9 @@ done
 
 echo "✅ Database is up!"
 
-# Chạy migrate + seed StudentSeeder
+# Chạy migrate + seed StudentsSeeder
 php artisan migrate --force
-php artisan db:seed --class=StudentSeeder --force
+php artisan db:seed --class=StudentsSeeder --force
 
 # Start Laravel server
 php artisan serve --host=0.0.0.0 --port=8000
