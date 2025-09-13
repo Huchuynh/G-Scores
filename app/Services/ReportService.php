@@ -18,20 +18,22 @@ class ReportService
         'gdcd' => 'Civic Education',
     ];
 
-    public function generateReport(): array
+    public function generateReport(string $selectedSubject): array
     {
-        $stats = [];
+        $groups = [
+            '<4' => [0, 3.75],
+            '4 - 5.75' => [4, 5.75],
+            '6 - 7.75' => [6, 7.75],
+            '>=8' => [8, 10],
+        ];
 
-        foreach ($this->subjects as $field => $label) {
-            $stats[$label] = [
-                '>=8'   => DB::table('students')->where($field, '>=', 8)->count(),
-                '6-7.75' => DB::table('students')->where($field, '>=', 6)->where($field, '<', 8)->count(),
-                '4-5.75' => DB::table('students')->where($field, '>=', 4)->where($field, '<', 6)->count(),
-                '<4'    => DB::table('students')->where($field, '<', 4)->count(),
-            ];
+        $counts = [];
+
+        foreach ($groups as $label => $range) {
+            $counts[$label] = DB::table('students')->whereBetween($selectedSubject, $range)->count();
         }
 
-        return $stats;
+        return $counts;
     }
 
     public function topGroupA(int $limit = 10)

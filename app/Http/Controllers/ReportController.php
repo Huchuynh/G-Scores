@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 
 use App\Services\ReportService;
+use Illuminate\Http\Request;
 
 class ReportController extends Controller
 {
@@ -14,10 +15,23 @@ class ReportController extends Controller
         $this->reportService = $reportService;
     }
 
-    public function reports()
+    public function reports(Request $request)
     {
-        $stats =  $this->reportService->generateReport();
+        $subjects = [
+            'toan' => 'Math',
+            'ngu_van' => 'Literature',
+            'ngoai_ngu' => 'Foreign Language',
+            'vat_li' => 'Physics',
+            'hoa_hoc' => 'Chemistry',
+            'sinh_hoc' => 'Biology',
+            'lich_su' => 'History',
+            'dia_li' => 'Geography',
+            'gdcd' => 'Civic Education',
+        ];
+        $selectedSubject = $request->get('subject', 'toan');
+
+        $stats =  $this->reportService->generateReport($selectedSubject);
         $students = $this->reportService->topGroupA(10);
-        return view('reports', compact('stats', 'students'));
+        return view('reports', compact('stats', 'students', 'subjects', 'selectedSubject'));
     }
 }

@@ -3,24 +3,39 @@
 @section('title', 'Reports')
 
 @section('content')
-
-<div class="bg-body-light">
-    <div class="content content-full">
-        <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
-            <h1 class="flex-grow-1 fs-3 fw-semibold my-2 my-sm-3">Reports</h1>
+<div class="content">
+    <div class="d-md-flex justify-content-md-between align-items-md-center py-3 pt-md-3 pb-md-0 text-center text-md-start">
+        <div>
+            <h1 class="h3 mb-1">
+                Reports
+            </h1>
+            <p class="fw-medium mb-0 text-muted">
+                View and manage student reports.
+            </p>
         </div>
     </div>
 </div>
 
 <div class="content">
     <div class="block block-rounded">
-        <div class="block-header block-header-default text-center">
+        <div class="block-header block-header-default">
             <h3 class="block-title">Statistics of the number of students with scores by subjects</h3>
+            <div class="block-options">
+                <form method="GET" action="{{ route('reports') }}">
+                    <select class="form-select" name="subject" onchange="this.form.submit()">
+                        @foreach($subjects as $key => $subject)
+                        <option value="{{ $key }}" {{ $selectedSubject == $key ? 'selected' : '' }}>
+                            {{ ucfirst($subject) }}
+                        </option>
+                        @endforeach
+                    </select>
+                </form>
+            </div>
         </div>
         <div class="block-content block-content-full text-center">
             <div class="py-3">
                 <!-- Lines Chart Container -->
-                <canvas id="reportChart" style="height: 340px; display: block; box-sizing: border-box; width: 502px;" width="628" height="425"></canvas>
+                <canvas id="scoreChart" width="628" height="425"></canvas>
             </div>
         </div>
     </div>
@@ -66,49 +81,34 @@
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
-    const data = {
-        labels: @json(array_keys($stats)),
-        datasets: [{
-                label: ">= 8",
-                data: @json(array_column($stats, '>=8')),
-                backgroundColor: "rgba(75, 192, 192, 0.7)"
-            },
-            {
-                label: "6 - 7.75",
-                data: @json(array_column($stats, '6-7.75')),
-                backgroundColor: "rgba(54, 162, 235, 0.7)"
-            },
-            {
-                label: "4 - 5.75",
-                data: @json(array_column($stats, '4-5.75')),
-                backgroundColor: "rgba(255, 206, 86, 0.7)"
-            },
-            {
-                label: "< 4",
-                data: @json(array_column($stats, '<4')),
-                backgroundColor: "rgba(255, 99, 132, 0.7)"
-            },
-        ]
-    };
+    const labels = @json(array_keys($stats));
+    const data = @json(array_values($stats));
 
-    const config = {
+    const ctx = document.getElementById('scoreChart').getContext('2d');
+    const scoreChart = new Chart(ctx, {
         type: 'bar',
-        data: data,
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Number of Students',
+                data: data,
+                backgroundColor: 'rgba(54, 162, 235, 0.6)',
+                borderColor: 'rgba(54, 162, 235, 1)',
+                borderWidth: 1
+            }]
+        },
         options: {
             responsive: true,
+            maintainAspectRatio: false,
             scales: {
-                x: {
-                    stacked: true
-                },
                 y: {
-                    stacked: true,
-                    beginAtZero: true
+                    beginAtZero: true,
+                    ticks: {
+                        stepSize: 50000
+                    } // tùy chỉnh theo số lượng lớn
                 }
             }
         }
-    };
-
-    new Chart(document.getElementById('reportChart'), config);
+    });
 </script>
-
 @endsection

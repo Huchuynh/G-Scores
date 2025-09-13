@@ -3,11 +3,15 @@
 @section('title', 'Scores')
 
 @section('content')
-
-<div class="bg-body-light">
-    <div class="content content-full">
-        <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
-            <h1 class="flex-grow-1 fs-3 fw-semibold my-2 my-sm-3">Search Scores</h1>
+<div class="content">
+    <div class="d-md-flex justify-content-md-between align-items-md-center py-3 pt-md-3 pb-md-0 text-center text-md-start">
+        <div>
+            <h1 class="h3 mb-1">
+                Search Scores
+            </h1>
+            <p class="fw-medium mb-0 text-muted">
+                Search for student scores by registration number.
+            </p>
         </div>
     </div>
 </div>
@@ -24,7 +28,10 @@
                     <div class="col-sm-10 col-md-8">
                         <div class="mb-4">
                             <label class="form-label" for="block-form7-username">Registration Number</label>
-                            <input type="text" class="form-control form-control-alt" id="sbd" name="sbd" placeholder="Enter registration number" value="{{ old('sbd') }}" required>
+                            <input type="text" class="form-control form-control-alt @error('sbd') is-invalid @enderror" id="sbd" name="sbd" placeholder="Enter registration number" value="{{ old('sbd') }}" required>
+                            @if($errors->has('sbd'))
+                            <div class="invalid-feedback">{{ $errors->first('sbd') }}</div>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -42,23 +49,14 @@
             <h3 class="block-title">Detailed Scores</h3>
         </div>
         <div class="block-content">
-            @if($errors->has('sbd'))
-            <div class="alert alert-danger text-center" role="alert">
-                <p class="mb-0">{{ $errors->first('sbd') }}</p>
-            </div>
-            @elseif(!isset($student))
-            <div class="alert alert-primary text-center" role="alert">
-                <p class="mb-0">Enter your registration number to view scores</p>
-            </div>
-            @endif
             @isset($student)
             <div class="mb-4">
                 <div class="mb-2">
-                    <span class="fw-semibold">Số báo danh:</span>
+                    <span class="fw-semibold">Registration Number:</span>
                     <span class="text-muted">{{ $student->sbd }}</span>
                 </div>
                 <div class="mb-2">
-                    <span class="fw-semibold">Mã ngoại ngữ:</span>
+                    <span class="fw-semibold">Foreign Language Code:</span>
                     <span class="text-muted">{{ $student->ma_ngoai_ngu }}</span>
                 </div>
             </div>
@@ -91,9 +89,12 @@
                     </tr>
                 </tbody>
             </table>
+            @else
+            <div class="alert alert-primary text-center" role="alert">
+                <p class="mb-0">Please enter your registration number to view scores.</p>
+            </div>
             @endisset
         </div>
     </div>
 </div>
-
 @endsection
