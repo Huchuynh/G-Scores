@@ -28,7 +28,7 @@ RUN composer install --no-dev --no-interaction --optimize-autoloader
 RUN chown -R www-data:www-data storage bootstrap/cache
 
 # Expose port
-EXPOSE 8000
+EXPOSE 10000
 
 # Copy entrypoint script
 COPY entrypoint.sh /usr/local/bin/entrypoint.sh
