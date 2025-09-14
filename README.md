@@ -73,4 +73,4 @@ docker-compose up -d --build
 
 ## 🎬 Demo Video
 
-You can watch a demo of G-Scores here: [Demo Video](./screenshots/demo.mp4)
+You can watch a demo of G-Scores here: [Demo Video](./screenshots/demo-app.mp4)
