@@ -12,10 +12,10 @@ You can access the live demo of G-Scores at: [https://g-scores-hd67.onrender.com
 
 2. Score report by levels – Students are categorized into four levels:
 
-    - ≥ 8: Excellent
-    - 8 > score ≥ 6: Good
-    - 6 > score ≥ 4: Average
-    - < 4: Poor
+    - ≥ 8
+    - 8 > score ≥ 6
+    - 6 > score ≥ 4
+    - < 4
 
 3. Statistics by subjects – Charts showing the number of students in each score level for Math, Physics, and Chemistry.
 
@@ -28,7 +28,6 @@ Before running the application, make sure your system has:
 -   Docker & Docker Compose
 -   PHP >= 8.1
 -   Composer
--   PostgreSQL
 
 ## 📥 Installation and Running Locally
 
@@ -63,4 +62,4 @@ docker-compose exec app php artisan migrate --force
 docker-compose exec app php artisan db:seed --class=StudentsSeeder --force
 ```
 
-5. Access the application in your web browser at `http://localhost:10000`.
+5. Access the application in your web browser at `http://localhost:8000`.
