@@ -20,20 +20,21 @@ class ReportService
 
     public function generateReport(string $selectedSubject): array
     {
-        $groups = [
-            '<4' => [0, 3.75],
-            '4 - 5.75' => [4, 5.75],
-            '6 - 7.75' => [6, 7.75],
-            '>=8' => [8, 10],
+        $result = DB::table('students')
+            ->selectRaw("
+            SUM(CASE WHEN $selectedSubject < 4 THEN 1 ELSE 0 END) as lt_4,
+            SUM(CASE WHEN $selectedSubject BETWEEN 4 AND 5.75 THEN 1 ELSE 0 END) as between_4_5_75,
+            SUM(CASE WHEN $selectedSubject BETWEEN 6 AND 7.75 THEN 1 ELSE 0 END) as between_6_7_75,
+            SUM(CASE WHEN $selectedSubject >= 8 THEN 1 ELSE 0 END) as gte_8
+        ")
+            ->first();
+
+        return [
+            '<4' => $result->lt_4,
+            '4 - 5.75' => $result->between_4_5_75,
+            '6 - 7.75' => $result->between_6_7_75,
+            '>=8' => $result->gte_8,
         ];
-
-        $counts = [];
-
-        foreach ($groups as $label => $range) {
-            $counts[$label] = DB::table('students')->whereBetween($selectedSubject, $range)->count();
-        }
-
-        return $counts;
     }
 
     public function topGroupA(int $limit = 10)
