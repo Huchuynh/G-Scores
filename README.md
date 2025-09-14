@@ -17,7 +17,7 @@ You can access the live demo of G-Scores at: [https://g-scores-hd67.onrender.com
     - 6 > score ≥ 4
     - < 4
 
-3. Statistics by subjects – Charts showing the number of students in each score level for Math, Physics, and Chemistry.
+3. Statistics by subjects – Charts showing the number of students in each score level.
 
 4. Top 10 students in Group A – Lists the top 10 students with the highest total scores in Math, Physics, and Chemistry.
 
@@ -39,11 +39,12 @@ cd G-Scores
 ```
 
 2. Install Composer
+
 ```bash
 composer install --no-dev --optimize-autoloader
 ```
 
-3. Copy the example environment file:
+3. Copy the example environment file and fill in the necessary environment variables:
 
 ```bash
 cp .env.example .env
@@ -55,11 +56,16 @@ cp .env.example .env
 docker-compose up -d --build
 ```
 
-5. Create a database and run migrations with seed data (StudentsSeeder):
-
-```bash
-docker-compose exec app php artisan migrate --force
-docker-compose exec app php artisan db:seed --class=StudentsSeeder --force
-```
-
 5. Access the application in your web browser at `http://localhost:8000`.
+
+## 🖼️ Screenshots
+
+1. Search Scores Page
+   ![Search Scores Page](screenshots/search-scores.png)
+
+2. Score Reports Page
+
+-   Statistics by subjects (charts)
+    ![Score Reports Page](screenshots/reports-1.png)
+-   Top 10 students in Group A
+    ![Top 10 students in Group A](screenshots/reports-2.png)
