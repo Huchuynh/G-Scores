@@ -57,6 +57,7 @@ docker-compose up -d --build
 ```
 
 5. Access the application in your web browser at `http://localhost:8000`.
+    > Note: On first run, it may take a minute for migrations and seeders to finish before the web page is fully available.
 
 ## 🖼️ Screenshots
 
@@ -69,3 +70,7 @@ docker-compose up -d --build
     ![Score Reports Page](screenshots/reports-1.png)
 -   Top 10 students in Group A
     ![Top 10 students in Group A](screenshots/reports-2.png)
+
+## 🎬 Demo Video
+
+You can watch a demo of G-Scores here: [Demo Video](./screenshots/demo.mp4)
