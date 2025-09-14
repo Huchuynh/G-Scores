@@ -20,6 +20,6 @@ RUN chown -R www-data:www-data storage bootstrap/cache
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 
-EXPOSE 10000
+EXPOSE 8000
 
 CMD ["sh", "/entrypoint.sh"]
