@@ -73,4 +73,8 @@ docker-compose up -d --build
 
 ## 🎬 Demo Video
 
-You can watch a demo of G-Scores here: [Demo Video](./screenshots/demo-app.mp4)
+<video width="600" controls>
+  <source src="./screenshots/demo-app.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+
